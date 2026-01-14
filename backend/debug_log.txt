@@ -1,0 +1,42 @@
+LOGIN START: eyJhbGciOi... at 2026-01-11 09:06:34.969247
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-11 09:06:35.077309
+LOGIN START: eyJhbGciOi... at 2026-01-11 10:09:03.344912
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-11 10:09:03.350205
+LOGIN START: eyJhbGciOi... at 2026-01-11 10:31:41.212415
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-11 10:31:41.217636
+LOGIN START: eyJhbGciOi... at 2026-01-11 15:01:58.095675
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-11 15:01:58.215342
+LOGIN START: eyJhbGciOi... at 2026-01-12 08:34:10.342451
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-12 08:34:10.598527
+LOGIN START: eyJhbGciOi... at 2026-01-12 08:47:16.795924
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-12 08:47:16.893642
+LOGIN START: eyJhbGciOi... at 2026-01-12 08:47:59.596075
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-12 08:47:59.843929
+LOGIN START: eyJhbGciOi... at 2026-01-12 09:07:35.787112
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-12 09:07:36.013278
+LOGIN START: eyJhbGciOi... at 2026-01-12 09:09:22.983906
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-12 09:09:23.069485
+LOGIN START: eyJhbGciOi... at 2026-01-12 09:09:57.125399
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-12 09:09:57.206750
+LOGIN START: eyJhbGciOi... at 2026-01-12 09:18:21.178862
+LOGIN START: eyJhbGciOi... at 2026-01-12 09:18:21.179359
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-12 09:18:21.682340
+LOGIN START: eyJhbGciOi... at 2026-01-12 09:18:21.789123
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-12 09:18:21.876503
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-12 09:18:22.306439
+LOGIN START: eyJhbGciOi... at 2026-01-12 10:54:42.828163
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-12 10:54:43.573733
+LOGIN START: eyJhbGciOi... at 2026-01-12 12:13:24.482467
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-12 12:13:24.506490
+LOGIN START: eyJhbGciOi... at 2026-01-12 12:27:08.366866
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-12 12:27:08.487275
+LOGIN START: eyJhbGciOi... at 2026-01-12 12:41:33.611906
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-12 12:41:33.741708
+LOGIN START: eyJhbGciOi... at 2026-01-13 07:58:04.726059
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-13 07:58:05.204847
+LOGIN START: eyJhbGciOi... at 2026-01-14 09:13:42.707394
+TOKEN ERROR: 401: Invalid or expired token: HTTPSConnectionPool(host='www.googleapis.com', port=443): Max retries exceeded with url: /robot/v1/metadata/x509/securetoken@system.gserviceaccount.com (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)'))) at 2026-01-14 09:13:42.872236
+LOGIN START: eyJhbGciOi... at 2026-01-14 09:15:50.429982
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-14 09:15:50.760852
+LOGIN START: eyJhbGciOi... at 2026-01-14 09:23:00.985054
+TOKEN VERIFIED: rahul.modi@bbafmah.christuniversity.in at 2026-01-14 09:23:00.989094

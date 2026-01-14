@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* Figma UI Design System Variables */
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: #030213;
+  --card: #ffffff;
+  --card-foreground: #030213;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --ring: #9ca3af;
+  --radius: 0.625rem;
+  --popover: #ffffff;
+  --popover-foreground: #030213;
+}
+
+.dark {
+  --background: #0a0a0f;
+  /* Main background: very dark blue-black */
+  --header-bg: #0f0f14;
+  /* Header/Sidebar background */
+
+  --foreground: #f8fafc;
+
+  --card: #13131a;
+  /* Primary cards */
+  --card-foreground: #f8fafc;
+
+  --popover: #13131a;
+  --popover-foreground: #f8fafc;
+
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+
+  --secondary: #1a1a24;
+  /* Secondary cards (inputs, dropdowns) */
+  --secondary-foreground: #f8fafc;
+
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+
+  --accent: #1a1a24;
+  --accent-foreground: #f8fafc;
+
+  --border: #1a1a24;
+  --input: #1a1a24;
+  --ring: #3b82f6;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    @apply text-2xl font-semibold;
+  }
+
+  h2 {
+    @apply text-xl font-semibold;
+  }
+
+  h3 {
+    @apply text-lg font-medium;
+  }
+
+  h4 {
+    @apply text-base font-medium;
+  }
+}
+
+@layer components {
+
+  /* Button Styles */
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-md active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-white border border-gray-200 hover:bg-gray-50 text-gray-900 px-6 py-3 rounded-lg font-medium transition-all;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg transition-colors;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-card p-6 rounded-[var(--radius)] shadow-sm border border-border;
+  }
+
+  /* Input Styles */
+  .input-field {
+    @apply w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all;
+  }
+
+  /* Text Utilities */
+  .text-metric {
+    @apply font-semibold text-foreground;
+  }
+
+  .text-label {
+    @apply text-sm font-medium text-muted-foreground;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-danger {
+    @apply bg-red-100 text-red-800;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  /* Gradient Cards */
+  .gradient-card-orange {
+    @apply bg-gradient-to-br from-orange-500 to-orange-600 text-white border-0 shadow-lg;
+  }
+
+  .gradient-card-purple {
+    @apply bg-gradient-to-br from-purple-500 to-purple-600 text-white border-0 shadow-lg;
+  }
+
+  .gradient-card-slate {
+    @apply bg-gradient-to-br from-slate-700 to-slate-900 text-white border-0 shadow-lg;
+  }
+
+  /* Enhanced Card with better shadows */
+  .card-enhanced {
+    @apply bg-white rounded-2xl shadow-lg border border-gray-100 p-6;
+  }
+
+  /* Stock Avatar Circles */
+  .stock-avatar {
+    @apply w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold;
+  }
+
+  /* Tab Navigation */
+  .tab-button {
+    @apply px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors relative;
+  }
+
+  .tab-button-active {
+    @apply text-gray-900;
+  }
+
+  .tab-button-active::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900;
+  }
+
+  /* Table Styles */
+  .table-header {
+    @apply text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+
+  .table-row {
+    @apply hover:bg-gray-50 transition-colors;
+  }
+
+  /* Badge for BUY/SELL */
+  .badge-buy {
+    @apply inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100 text-blue-800;
+  }
+
+  .badge-sell {
+    @apply inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-orange-100 text-orange-800;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Utility Classes */
+.shadow-soft {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow-medium {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-large {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

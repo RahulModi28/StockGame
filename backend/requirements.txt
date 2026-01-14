@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]
+psycopg2-binary
+redis
+firebase-admin
+gunicorn
