@@ -1,6 +1,7 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float, DateTime, DECIMAL
 from sqlalchemy.orm import relationship
 from datetime import datetime
+from decimal import Decimal
 from .database import Base
 
 class Team(Base):
@@ -33,6 +34,21 @@ class Company(Base):
     halted_until = Column(DateTime, nullable=True)
     circuit_breaker_level = Column(Integer, default=0) # 0, 1 (10%), 2 (15%), 3 (20%)
     created_at = Column(DateTime, default=datetime.utcnow)
+
+    @property
+    def current_price(self) -> float:
+        return float(self.price) if self.price is not None else 0.0
+
+    @current_price.setter
+    def current_price(self, value):
+        if value is None:
+            self.price = None
+            return
+        self.price = Decimal(str(value))
+
+    @property
+    def opening_price(self) -> float:
+        return float(self.price) if self.price is not None else 0.0
 
 
 class Holding(Base):
@@ -151,4 +167,3 @@ class LimitOrder(Base):
 
     team = relationship("Team")
     company = relationship("Company")
-

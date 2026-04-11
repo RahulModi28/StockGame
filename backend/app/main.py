@@ -2,21 +2,22 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from .routers import auth, market, admin, news, portfolio, teams, orders
+from .settings import settings
+import asyncio
+from .services.market_maker import market_director
 
-Base.metadata.create_all(bind=engine)
+if settings.auto_create_tables:
+    Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Stock Market Simulation Game")
+app = FastAPI(title=settings.app_name)
 
-origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "*"
-]
+origins = settings.cors_allow_origins
+allow_credentials = settings.cors_allow_credentials and "*" not in origins
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=True,
+    allow_credentials=allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -28,8 +29,6 @@ app.include_router(news.router, prefix="/news", tags=["News"])
 app.include_router(portfolio.router, prefix="/portfolio", tags=["Portfolio"])
 app.include_router(teams.router, prefix="/teams", tags=["Teams"])
 app.include_router(orders.router, prefix="/orders", tags=["Orders"])
-import asyncio
-from .services.market_maker import market_director
 
 @app.on_event("startup")
 async def startup_event():

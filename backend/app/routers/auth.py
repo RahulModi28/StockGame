@@ -4,7 +4,6 @@ from .. import crud, models, schemas
 from ..database import get_db
 from ..firebase_auth import verify_firebase_token
 from pydantic import BaseModel
-from datetime import datetime
 
 router = APIRouter()
 
@@ -13,31 +12,15 @@ class FirebaseLoginRequest(BaseModel):
 
 @router.post("/login", response_model=schemas.Team)
 def login(request: FirebaseLoginRequest, db: Session = Depends(get_db)):
-    with open("debug_log.txt", "a") as f:
-        f.write(f"LOGIN START: {request.id_token[:10]}... at {datetime.utcnow()}\n")
-    
-    try:
-        print(f"DEBUG: Verify Start")
-        # Verify Token
-        decoded_token = verify_firebase_token(f"Bearer {request.id_token}")
-        email = decoded_token.get("email")
-        uid = decoded_token.get("uid")
-        
-        print(f"DEBUG: Token Verified: {email}")
-        with open("debug_log.txt", "a") as f:
-            f.write(f"TOKEN VERIFIED: {email} at {datetime.utcnow()}\n")
-    except Exception as e:
-        with open("debug_log.txt", "a") as f:
-            f.write(f"TOKEN ERROR: {e} at {datetime.utcnow()}\n")
-        raise e
+    decoded_token = verify_firebase_token(f"Bearer {request.id_token}")
+    email = decoded_token.get("email")
+    uid = decoded_token.get("uid")
     name = decoded_token.get("name") or email.split("@")[0] # Default name if not present
 
-    print("DEBUG: Checking Membership...")
     # Check if user is a member of any teams
     membership = db.query(models.TeamMember).filter(
         models.TeamMember.user_email == email
     ).first()
-    print(f"DEBUG: Membership Found: {membership is not None}")
     
     if membership:
         # User is already a member of a team, return that team

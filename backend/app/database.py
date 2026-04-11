@@ -1,15 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import os
 import redis
-from dotenv import load_dotenv
-
-load_dotenv()
+from .settings import settings
 
 # Database Configuration
-REMOTE_DATABASE_URL = os.getenv("REMOTE_DATABASE_URL")
-LOCAL_DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost/stockgame")
+REMOTE_DATABASE_URL = settings.remote_database_url
+LOCAL_DATABASE_URL = settings.database_url
 
 SQLALCHEMY_DATABASE_URL = LOCAL_DATABASE_URL
 engine = None
@@ -58,9 +55,9 @@ def get_db():
 
 # Redis Configuration
 # Try Upstash first, then fallback to local Redis
-UPSTASH_REDIS_REST_URL = os.getenv("UPSTASH_REDIS_REST_URL")
-UPSTASH_REDIS_TOKEN = os.getenv("UPSTASH_REDIS_TOKEN")
-LOCAL_REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+UPSTASH_REDIS_REST_URL = settings.upstash_redis_rest_url
+UPSTASH_REDIS_TOKEN = settings.upstash_redis_token
+LOCAL_REDIS_URL = settings.redis_url
 
 # Create a single global client instance
 redis_client = None
@@ -105,4 +102,3 @@ def get_redis_client():
     except Exception as e:
         print(f"CRITICAL: Failed to connect to Local Redis: {e}")
         raise e
-
