@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 from datetime import datetime
 
@@ -14,9 +14,7 @@ class Team(TeamBase):
     email: Optional[str] = None
     cash_balance: float
     is_admin: bool = False
-    
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # Company Schemas
 class CompanyBase(BaseModel):
@@ -36,9 +34,7 @@ class CompanyCreate(CompanyBase):
 
 class Company(CompanyBase):
     id: int
-    
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # Trade Schemas
 class TradeCreate(BaseModel):
@@ -55,8 +51,7 @@ class Trade(BaseModel):
     price: float
     timestamp: datetime
     
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # Holding Schemas
 class Holding(BaseModel):
@@ -66,8 +61,7 @@ class Holding(BaseModel):
     average_buy_price: float
     company: Company # Nested company data
     
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # News Schemas
 class NewsBase(BaseModel):
@@ -84,8 +78,7 @@ class News(NewsBase):
     id: int
     released_at: datetime
     
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # Login
 class LoginRequest(BaseModel):
@@ -145,6 +138,4 @@ class LimitOrder(LimitOrderBase):
     status: str
     created_at: datetime
     
-    class Config:
-        orm_mode = True
-
+    model_config = ConfigDict(from_attributes=True)

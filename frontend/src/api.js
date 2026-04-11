@@ -84,9 +84,13 @@ export const removeUserAdmin = (userId) => api.post(`/admin/users/${userId}/remo
 export const banUser = (userId, isBanned) => api.post(`/admin/users/${userId}/ban`, { is_banned: isBanned });
 export const getWhaleAlerts = (threshold = 20000) => api.get(`/admin/analytics/whales?threshold=${threshold}`);
 
+// Backward-compatible aliases used by existing pages
+export const adjustBalance = adjustmentBalance;
+export const makeAdmin = makeUserAdmin;
+export const removeAdmin = removeUserAdmin;
+
 // Event APIs
 export const triggerCrash = () => api.post('/admin/event/crash');
 export const triggerDividend = (companyId, amount) => api.post(`/admin/event/dividend/${companyId}?amount=${amount}`);
 
 export default api;
-
