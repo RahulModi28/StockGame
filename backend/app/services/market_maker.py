@@ -439,7 +439,6 @@ class MarketDirector:
                         else:
                             # Save avg_buy_price before potentially deleting the holding
                             avg_buy = float(holding.average_buy_price)
-
                             # Execute SELL
                             transaction_val = float(current_price) * order.quantity
                             team.cash_balance = float(team.cash_balance) + transaction_val
