@@ -7,13 +7,13 @@ StockGame is a stock market simulation platform with:
 
 ## Repository structure
 
-- `/home/runner/work/StockGame/StockGame/backend` – API, market logic, data layer
-- `/home/runner/work/StockGame/StockGame/frontend` – web UI
+- `./backend` – API, market logic, data layer
+- `./frontend` – web UI
 
 ## Backend setup
 
 ```bash
-cd /home/runner/work/StockGame/StockGame/backend
+cd backend
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -33,7 +33,7 @@ pip install -r requirements.txt
 ## Migrations (Alembic)
 
 ```bash
-cd /home/runner/work/StockGame/StockGame/backend
+cd backend
 alembic upgrade head
 alembic revision --autogenerate -m "describe change"
 ```
@@ -41,14 +41,14 @@ alembic revision --autogenerate -m "describe change"
 ## Backend tests
 
 ```bash
-cd /home/runner/work/StockGame/StockGame/backend
+cd backend
 pytest -q
 ```
 
 ## Frontend setup
 
 ```bash
-cd /home/runner/work/StockGame/StockGame/frontend
+cd frontend
 npm ci
 npm run dev
 ```
