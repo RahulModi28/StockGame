@@ -1,5 +1,5 @@
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from dotenv import load_dotenv
 
@@ -22,7 +22,7 @@ def _parse_csv(value: str | None, default: list[str]) -> list[str]:
 class Settings:
     app_name: str = os.getenv("APP_NAME", "Stock Market Simulation Game")
     auto_create_tables: bool = _parse_bool(os.getenv("AUTO_CREATE_TABLES"), False)
-    cors_allow_origins: list[str] = None  # type: ignore[assignment]
+    cors_allow_origins: list[str] = field(default_factory=list)
     cors_allow_credentials: bool = _parse_bool(os.getenv("CORS_ALLOW_CREDENTIALS"), True)
 
     remote_database_url: str | None = os.getenv("REMOTE_DATABASE_URL")
