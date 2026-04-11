@@ -47,6 +47,7 @@ class Company(Base):
 
     @property
     def opening_price(self) -> float:
+        # Derived field exposed for schema compatibility; intentionally read-only.
         return float(self.price) if self.price is not None else 0.0
 
 
