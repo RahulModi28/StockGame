@@ -1,7 +1,9 @@
+import asyncio
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from .routers import auth, market, admin, news, portfolio, teams, orders
+from .services.market_maker import market_director
 
 Base.metadata.create_all(bind=engine)
 
@@ -28,8 +30,6 @@ app.include_router(news.router, prefix="/news", tags=["News"])
 app.include_router(portfolio.router, prefix="/portfolio", tags=["Portfolio"])
 app.include_router(teams.router, prefix="/teams", tags=["Teams"])
 app.include_router(orders.router, prefix="/orders", tags=["Orders"])
-import asyncio
-from .services.market_maker import market_director
 
 @app.on_event("startup")
 async def startup_event():

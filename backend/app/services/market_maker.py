@@ -181,18 +181,6 @@ class MarketDirector:
                             released_at=datetime.utcnow()
                         )
                         db.add(news)
-                        
-                        print(f"!!! CIRCUIT BREAKER {new_level} TRIPPED FOR {company.ticker} !!!")
-                        
-                        # Post Halt News
-                        halt_news = models.News(
-                            headline=halt_msg,
-                            impact_score=0, # Neutral info, but scary
-                            is_breaking=True,
-                            company_id=company.id,
-                            released_at=datetime.utcnow()
-                        )
-                        db.add(halt_news)
                     # -----------------------------
                     
             event.executed = True
@@ -423,6 +411,7 @@ class MarketDirector:
             # Fetch current prices 
             companies = crud.get_companies(db)
             price_map = {c.id: c.current_price for c in companies}
+            ticker_map = {c.id: c.ticker for c in companies}
             
             for order in active_orders:
                 current_price = price_map.get(order.company_id)
@@ -440,22 +429,17 @@ class MarketDirector:
                 if triggered:
                     print(f"Triggering {order.type} for Team {order.team_id} at ${current_price}")
                     try:
-                        # Convert to Market Trade
-                        # We use router logic, but we need to be careful about circular imports or context.
-                        # It's safer to use crud directly but we need transaction logic (balance update etc).
-                        # Let's import the router function or replicate logic? 
-                        # Replicating logic here is cleaner for "System Execution"
-                        
                         team = crud.get_team(db, order.team_id)
                         holding = crud.get_holding(db, order.team_id, order.company_id)
                         
                         # Validate holding exists
                         if not holding or holding.quantity < order.quantity:
-                            # Cancel order if invalid? or partial fill?
-                            # For now, Cancel.
                             order.status = "CANCELLED"
                             print(f"Order {order.id} cancelled: Insufficient shares")
                         else:
+                            # Save avg_buy_price before potentially deleting the holding
+                            avg_buy = float(holding.average_buy_price)
+
                             # Execute SELL
                             transaction_val = float(current_price) * order.quantity
                             team.cash_balance = float(team.cash_balance) + transaction_val
@@ -465,7 +449,6 @@ class MarketDirector:
                                 db.delete(holding)
                                 
                             # PnL
-                            avg_buy = float(holding.average_buy_price)
                             realized = (float(current_price) - avg_buy) * order.quantity
                             
                             # Record Trade
@@ -496,9 +479,9 @@ class MarketDirector:
                                 sibling.status = "CANCELLED"
                                 print(f"OCO Trigger: Cancelled sibling order {sibling.id} (Type: {sibling.type})")
                             
-                            # Notify? (Create News/Notification in DB)
-                            msg = f"ORDER FILLED: {order.type} executed for {order.quantity} shares of {companies[order.company_id-1].ticker} at ${current_price:.2f}"
-                            # Insert into some notification table if it existed, or system log
+                            # Log execution
+                            ticker = ticker_map.get(order.company_id, "UNKNOWN")
+                            print(f"ORDER FILLED: {order.type} executed for {order.quantity} shares of {ticker} at ${current_price:.2f}")
                         
                         db.commit()
                         

@@ -83,11 +83,11 @@ def init_game(db: Session = Depends(get_db)):
         return {"message": "Game already initialized"}
     
     companies = [
-        {"name": "AlphaTech", "ticker": "ALPHA", "sector": "Tech", "current_price": 100.0, "total_shares": 1000000, "volatility_rating": 1.2},
-        {"name": "GreenGrid Energy", "ticker": "GRID", "sector": "Energy", "current_price": 80.0, "total_shares": 1500000, "volatility_rating": 0.9},
-        {"name": "FinNest Bank", "ticker": "NEST", "sector": "Finance", "current_price": 150.0, "total_shares": 800000, "volatility_rating": 1.0},
-        {"name": "MediCare Corp", "ticker": "MEDI", "sector": "Healthcare", "current_price": 120.0, "total_shares": 1200000, "volatility_rating": 0.8},
-        {"name": "AutoDrive Motors", "ticker": "AUTO", "sector": "Consumer", "current_price": 200.0, "total_shares": 500000, "volatility_rating": 1.5},
+        {"name": "AlphaTech", "ticker": "ALPHA", "sector": "Tech", "current_price": 100.0, "opening_price": 100.0, "total_shares": 1000000, "volatility_rating": 1.2, "is_halted": False},
+        {"name": "GreenGrid Energy", "ticker": "GRID", "sector": "Energy", "current_price": 80.0, "opening_price": 80.0, "total_shares": 1500000, "volatility_rating": 0.9, "is_halted": False},
+        {"name": "FinNest Bank", "ticker": "NEST", "sector": "Finance", "current_price": 150.0, "opening_price": 150.0, "total_shares": 800000, "volatility_rating": 1.0, "is_halted": False},
+        {"name": "MediCare Corp", "ticker": "MEDI", "sector": "Healthcare", "current_price": 120.0, "opening_price": 120.0, "total_shares": 1200000, "volatility_rating": 0.8, "is_halted": False},
+        {"name": "AutoDrive Motors", "ticker": "AUTO", "sector": "Consumer", "current_price": 200.0, "opening_price": 200.0, "total_shares": 500000, "volatility_rating": 1.5, "is_halted": False},
     ]
     
     for c in companies:
@@ -96,6 +96,8 @@ def init_game(db: Session = Depends(get_db)):
         db_company = crud.create_company(db, company_in)
         # Log initial history
         crud.log_price_history(db_company.id, db_company.current_price, custom_timestamp=crud.get_game_time())
+    
+    return {"message": f"Game initialized with {len(companies)} companies."}
     
 # --- Session Management ---
 
