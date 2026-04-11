@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func, desc
 from . import models, schemas
-from datetime import datetime
+from datetime import datetime, timedelta
 from .database import get_redis_client
 import math
 import json
@@ -63,8 +63,6 @@ def get_company(db: Session, company_id: int):
     company.opening_price = company.price
     
     return company
-
-from datetime import datetime, timedelta
 
 def get_game_time(redis_client=None):
     """Calculates virtual game time based on session start anchor."""
@@ -168,18 +166,12 @@ def get_companies(db: Session):
     return companies
 
 def create_company(db: Session, company: schemas.CompanyCreate):
-    # Separate static and dynamic
-    static_data = company.dict(exclude={'current_price', 'volatility_rating', 'is_halted', 'dividend_yield'})
-    # We might have extra fields in the input that match the old model but not the new one.
-    # The dictionary will contain them, but **static_data will crash if model doesn't have them?
-    # Actually Pydantic dict() includes all fields.
-    # We need to manually filter or use explicit arguments.
-    
     db_company = models.Company(
         name=company.name,
         ticker=company.ticker,
         sector=company.sector,
-        total_shares=company.total_shares
+        total_shares=company.total_shares,
+        price=company.current_price
     )
     db.add(db_company)
     db.commit()
@@ -195,8 +187,6 @@ def create_company(db: Session, company: schemas.CompanyCreate):
     
     # Attach for return
     db_company.current_price = company.current_price
-    db_company.volatility_rating = company.volatility_rating
-    
     db_company.volatility_rating = company.volatility_rating
     
     return db_company

@@ -339,6 +339,8 @@ const Market = () => {
                 currentPrice={selectedStock?.current_price}
                 onConfirm={executeTrade}
                 loading={tradeLoading}
+                cashBalance={portfolio?.cash_balance || 0}
+                availableShares={selectedStock?.availableShares || 0}
             />
         </div>
     );
