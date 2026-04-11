@@ -12,6 +12,7 @@ if settings.auto_create_tables:
 app = FastAPI(title=settings.app_name)
 
 origins = settings.cors_allow_origins
+# CORS spec disallows credentials with wildcard origins, so disable credentials in that case.
 allow_credentials = settings.cors_allow_credentials and "*" not in origins
 
 app.add_middleware(

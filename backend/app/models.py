@@ -42,8 +42,7 @@ class Company(Base):
     @current_price.setter
     def current_price(self, value):
         if value is None:
-            self.price = None
-            return
+            raise ValueError("current_price cannot be None")
         self.price = Decimal(str(value))
 
     @property
