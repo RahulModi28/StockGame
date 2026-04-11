@@ -78,14 +78,14 @@ export const setStockPrice = (companyId, price) => api.post('/admin/stock/price'
 export const createNews = (newsData) => api.post('/admin/news/create', newsData);
 export const getAllUsers = () => api.get('/admin/users');
 export const getUserPortfolio = (userId) => api.get(`/admin/users/${userId}/portfolio`);
-export const adjustmentBalance = (userId, amount, type) => api.post(`/admin/users/${userId}/balance`, { amount, type });
+export const adjustBalance = (userId, amount, type) => api.post(`/admin/users/${userId}/balance`, { amount, type });
+export const adjustmentBalance = adjustBalance;
 export const makeUserAdmin = (userId) => api.post(`/admin/users/${userId}/make-admin`);
 export const removeUserAdmin = (userId) => api.post(`/admin/users/${userId}/remove-admin`);
 export const banUser = (userId, isBanned) => api.post(`/admin/users/${userId}/ban`, { is_banned: isBanned });
 export const getWhaleAlerts = (threshold = 20000) => api.get(`/admin/analytics/whales?threshold=${threshold}`);
 
 // Backward-compatible aliases used by existing pages
-export const adjustBalance = adjustmentBalance;
 export const makeAdmin = makeUserAdmin;
 export const removeAdmin = removeUserAdmin;
 
